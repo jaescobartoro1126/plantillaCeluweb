@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>KOM | Inicio</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Sistema Transaccional. Desarrollado por Adylog S.A.S" name="description" />
+    <meta content="Alexander Escobar, Daniel Hidalgo, Gabriel Estrada" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="plantilla/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+    <link href="plantilla/global/plugins/fuente/fuente.css" rel="stylesheet" type="text/css" />
+    <link href="plantilla/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="plantilla/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="plantilla/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="plantilla/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <link href="plantilla/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="plantilla/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="plantilla/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="plantilla/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    @yield('styles')
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="plantilla/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="plantilla/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="plantilla/layouts/layout/css/layout.css" rel="stylesheet" type="text/css" />
+    <link href="plantilla/layouts/layout/css/adylog.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="plantilla/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <link href="plantilla/layouts/layout/css/custom.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" /> </head>
+<!-- END HEAD -->
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white @yield('menuCerrado')">
+    <div class="page-wrapper">
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+
+                    <div class="menu-toggler sidebar-toggler">
+                        <span></span>
+                    </div>
+                </div>
+                <a href="inicio.html">
+                    <img style="padding-top: 8px;" src="plantilla/layouts/layout/img/logo-invertido.png" alt="logo" class="logo-default" /> </a>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span></span>
+                </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <div class="form-group">
+                        <div class="control-label">Seleccione Empresa</div>
+                        <form method="GET" action="inicio">
+                            <select id="em" name="em" class="form-control" onchange="this.form.submit()">
+                                <option value="1" selected="selected">KOM</option>
+                            </select>
+                        </form>
+                    </div>
+                    <ul class="nav navbar-nav pull-right">
+                        <!-- BEGIN NOTIFICATION DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after "dropdown-extended" to change the dropdown styte -->
+                        <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
+                        <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
+                        <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar" onclick="restablecerNumero()">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="icon-bell"></i>
+                                <span class="badge badge-default" id="numNotificacion"> 0 </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- <li class="external">
+                                        <h3>
+                                            <span class="bold">0 notificaciones</span> pendientes</h3>
+                                        <a href="page_user_profile_1.html">ver todas</a>
+                                    </li> -->
+                                <li>
+                                    <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283" id="listaNotificacion">
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END NOTIFICATION DROPDOWN -->
+
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <img alt="" class="img-circle" src="plantilla/layouts/layout/img/avatar3_small.jpg" />
+
+                                <span class="username username-hide-on-mobile"> Alexander Escobar
+                                    </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="configuracion/perfil?em='.$empresa)}}">
+                                        <i class="icon-user"></i> Mi Perfil </a>
+                                </li>
+                                <li>
+                                    <a href="index.html">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END USER LOGIN DROPDOWN -->
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+        <!-- END HEADER -->
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <div class="page-sidebar navbar-collapse collapse">
+                    <ul class="page-sidebar-menu  page-header-fixed @yield('menuCerradoUl')" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="500">
+                        <li class="sidebar-toggler-wrapper hide">
+                            <div class="sidebar-toggler">
+                                <span></span>
+                            </div>
+                        </li>
+                        <li class="sidebar-search-wrapper">
+                        </li>
+                        <li class="nav-item">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="'.$modulo->clase_icono.'"></i>
+                                <span class="title">Contabilidad</span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <i class="'.trim($accion->clase_icono).'"></i>Parametrización
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Datos Sociedad
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Plan Contable
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <i class="'.trim($accion->clase_icono).'"></i>Movimientos
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Pagos
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Causación
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <i class="'.trim($accion->clase_icono).'"></i>Informes
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Diario
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Retenciones
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="'.$modulo->clase_icono.'"></i>
+                                <span class="title">Cartera</span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <i class="'.trim($accion->clase_icono).'"></i>Parametrización
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Datos Sociedad
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Plan Contable
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <i class="'.trim($accion->clase_icono).'"></i>Movimientos
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Pagos
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Causación
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <i class="'.trim($accion->clase_icono).'"></i>Informes
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Diario
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Retenciones
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="'.$modulo->clase_icono.'"></i>
+                                <span class="title">Facturación</span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <i class="'.trim($accion->clase_icono).'"></i>Parametrización
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Clientes
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Descuentos
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <i class="'.trim($accion->clase_icono).'"></i>Movimientos
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Pedidos
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Facturacion
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <i class="'.trim($accion->clase_icono).'"></i>Informes
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Diario
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="planCuentas.html" class="nav-link">
+                                                Retenciones
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                </div>
+                <!-- END SIDEBAR -->
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <div class="page-bar">
+                        <div class="col-md-8">
+                            <ul class="page-breadcrumb">
+                                <li>
+                                    <a href="{{ asset('inicio?em='.$empresa) }}">Inicio</a>
+                                    <i class="fa fa-circle"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4" style="text-align: right;">
+                            <img class="pull-right" style="width: 80px; padding-top: 5px;" src="{{ asset('img/logoEmpresa/'.$logoEmpresa)}}">
+                        </div>
+                    </div>
+
+
+
+                    @yield('contenido')
+                </div>
+            </div>
+        </div>
+        <!-- BEGIN FOOTER -->
+        <div class="page-footer">
+            <div class="page-footer-inner">2017 &copy; potenciado por
+                <a target="_blank" href="http://www.adylog.com"><img src="plantilla/layouts/layout/img/adylogo.png"></div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+    </div>
+    <script src="plantilla/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="plantilla/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="plantilla/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="plantilla/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+    <script src="plantilla/global/scripts/app.min.js" type="text/javascript"></script>
+    <script src="plantilla/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+    <script src="plantilla/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <script src="plantilla/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="/plantilla/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="/plantilla/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="plantilla/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="plantilla/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+    <script src="plantilla/pages/scripts/form-validation-mdN.js" type="text/javascript"></script>
+    <script src="plantilla/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+    <script src="/plantilla/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="plantilla/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="plantilla/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="plantilla/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="plantilla/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+    <script src="plantilla/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var baseURL = "{{ env('APP_URL') }}"
+    </script>
+    <script src="js/generalV1.js" type="text/javascript"></script>
+    <script src="js/scriptNotificacion.js" type="text/javascript"></script>
+    <script src="js/scriptEstadoReportes.js" type="text/javascript"></script>
+
+
+</body>
+
+</html>
